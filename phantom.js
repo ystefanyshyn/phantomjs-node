@@ -171,11 +171,12 @@
       sock = shoe(function(stream) {
         var d;
         d = dnode({}, options.dnodeOpts);
-        d.on('remote', function(phantom) {
-          wrap(phantom);
-          phantom.process = ps;
-          phanta.push(phantom);
-          return typeof cb === "function" ? cb(phantom, null) : void 0;
+        d.on('remote', function(phantomInstance) {
+          wrap(phantomInstance);
+          phantomInstance.process = ps;
+          phantom = phantomInstance;
+          phanta.push(phantomInstance);
+          return typeof cb === "function" ? cb(phantomInstance, null) : void 0;
         });
         d.pipe(stream);
         return stream.pipe(d);

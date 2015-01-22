@@ -109,11 +109,12 @@ module.exports =
 
       d = dnode({}, options.dnodeOpts)
 
-      d.on 'remote', (phantom) ->
-        wrap phantom
-        phantom.process = ps
-        phanta.push phantom
-        cb? phantom, null
+      d.on 'remote', (phantomInstance) ->
+        wrap phantomInstance
+        phantomInstance.process = ps
+        phantom = phantomInstance
+        phanta.push phantomInstance
+        cb? phantomInstance, null
 
       d.pipe stream
       stream.pipe d
